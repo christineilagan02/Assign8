@@ -58,20 +58,21 @@ def play():
             print(dotted,
                   string,
                   dotted)
+
+
+            userNums = get_user_nums()
+            winningNums = get_winning_nums() 
+            checker(userNums, winningNums)
             
-            play_pick_n()
-            break
+            try_again()
+            
 
         elif choice == '2':
-            print ("Thanks for playing!\n")
-            break
+            print ("You can now exit.\n")
+            sys.exit()
                          
         print("Error! Invalid input. Press any key to continue...\n")
 
-def play_pick_n():
-    userNums = get_user_nums()
-    winningNums = get_winning_nums() 
-    checker(userNums, winningNums)
 
 def get_user_nums():
     userNums = []
@@ -106,6 +107,22 @@ def checker(userNums, winningNums):
                "\nYour numbers: ", userNums,
                "\nThe winning lottery numbers were: ", winningNums, "\n")
 
+def try_again():
+    answer = input("\t\n     Try again y/n. \n\t>> ")
+    if answer.lower() == "y":
+        return play()
+
+
+    elif answer.lower() == "n":
+        separator()
+        print("\n\tThanks for playing! ")
+        sys.exit(separator())
+    else: 
+        print("\tSorry your input must be a y/n!")
+        return try_again()
+
+
+
 
 def main():
     intro()
@@ -114,5 +131,6 @@ def main():
     lottery_menu()
     separator()
     play()
+    try_again()
 
 main()
