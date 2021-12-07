@@ -16,41 +16,44 @@ MAX_PICK = 9
 WINNINGS = 1,000,000
 
 def intro():
-    print("\n\t    Welcome to Tine's Lottery")
+    print("\n\t       Welcome to Tine's Lottery")
     separator()
-    name = input("\n\t     Kindly, enter your name: \n\t>> ")
-    print(f"\n\t     Hello {name.title()}! ") 
-    print("\t     Are you ready to play?")
+    name = input("\n\t        Kindly, enter your name: \n\t  >> ")
+    print(f"\n\t        Hello {name.title()}! ") 
+    print("\t        Are you ready to play?")
 
 def _try():
-    answer = input("\t\n     Kindly, type y for yes and n for no. \n\t>> ")
+    answer = input("\t\n        Kindly, type y for yes and n for no. \n\t  >> ")
+    print("\n")
     if answer.lower() == "y":
         return answer
     elif answer.lower() == "n":
         separator()
-        print("\n\tYou can now exit.")
-        sys.exit(separator())
+        print("\t    Ok come back when you're ready! ")
+        print("\t           You can now exit.")
+        separator()
+        sys.exit("\n")
     else: 
-        print("\tSorry your input must be a y/n!")
+        print("\t  Sorry your input must be a y/n!")
         return _try()
 
 def title():
-    title = "\t      \33[33m**\33[0m \33[1mTine's Lottery\33[0m \33[33m**\33[0m"
-    print("\n\t\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m")
+    title = "\t         \33[33moOo\33[0m \33[1mTine's Lottery\33[0m \33[33moOo\33[0m"
+    print("\n\t\33[1m\33[33moOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m")
     print(title)
-    print("\t\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m")
+    print("\t\33[1m\33[33moOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m")
 
 def lottery_menu():
-     menu_list = ["\t           \33[3m\33[1m1. Play\33[0m", "\t           \33[3m\33[1m2. Exit\33[0m"]
+     menu_list = ["\n\t               \33[3m\33[1m1. Play\33[0m", "\t               \33[3m\33[1m2. Exit\33[0m"]
      print(menu_list[0])
      print(menu_list[1])
 
 def separator():
-    print("\t\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m")
+    print("\t   \33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m")
     
 def play():
     while True:
-        choice = input("\nEnter your choice[1-2]: ")
+        choice = input("\n\t        Enter your choice[1-2] \n\t  >> ")
         if choice == '1':
             string = "\n[Play Pick {}]".format(NUMBER_OF_PICKS) + "selected!"
             dotted = '\n'+ len(string) * "-"
@@ -68,10 +71,13 @@ def play():
             
 
         elif choice == '2':
-            print ("You can now exit.\n")
-            sys.exit()
+            print("\n")
+            separator()
+            print ("\t           You can now exit.")
+            separator()
+            sys.exit("\n")
                          
-        print("Error! Invalid input. Press any key to continue...\n")
+        print("  Error! Invalid input. Press any key to continue...\n")
 
 
 def get_user_nums():
@@ -102,7 +108,6 @@ def checker(userNums, winningNums):
                "\nYour numbers: ", userNums,
                "\nThe winning lottery numbers were: ", winningNums, "\n")
     else:
-
         print ("\nSorry, you lose...",
                "\nYour numbers: ", userNums,
                "\nThe winning lottery numbers were: ", winningNums, "\n")
@@ -111,7 +116,6 @@ def try_again():
     answer = input("\t\n     Try again y/n. \n\t>> ")
     if answer.lower() == "y":
         return play()
-
 
     elif answer.lower() == "n":
         separator()
@@ -131,6 +135,5 @@ def main():
     lottery_menu()
     separator()
     play()
-    try_again()
 
 main()
