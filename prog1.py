@@ -13,22 +13,25 @@ import sys
 NUMBER_OF_PICKS = 3
 MIN_PICK = 0
 MAX_PICK = 9
+WINNINGS = 1,000,000
 
 def intro():
-    print("Welcome to Tine's Lottery")
-    name = input("Kindly, enter your name: \n>> ")
-    print(f"Hello {name.title()}! ") 
-    print("Are you ready to play?")
+    print("\n\t    Welcome to Tine's Lottery")
+    separator()
+    name = input("\n\t     Kindly, enter your name: \n\t>> ")
+    print(f"\n\t     Hello {name.title()}! ") 
+    print("\t     Are you ready to play?")
 
 def _try():
-    answer = input("Kindly, type y for yes and n for no. \n>> ")
+    answer = input("\t\n     Kindly, type y for yes and n for no. \n\t>> ")
     if answer.lower() == "y":
         return answer
     elif answer.lower() == "n":
-        print("You can now exit.")
-        sys.exit()
+        separator()
+        print("\n\tYou can now exit.")
+        sys.exit(separator())
     else: 
-        print("Sorry your input must be a y/n!")
+        print("\tSorry your input must be a y/n!")
         return _try()
 
 def title():
@@ -42,8 +45,66 @@ def lottery_menu():
      print(menu_list[0])
      print(menu_list[1])
 
+def separator():
+    print("\t\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m")
     
+def play():
+    while True:
+        choice = input("\nEnter your choice[1-2]: ")
+        if choice == '1':
+            string = "\n[Play Pick {}]".format(NUMBER_OF_PICKS) + "selected!"
+            dotted = '\n'+ len(string) * "-"
+            
+            print(dotted,
+                  string,
+                  dotted)
+            
+            play_pick_n()
+            break
 
+        elif choice == '2':
+            print ("Thanks for playing!\n")
+            break
+                         
+        print("Error! Invalid input. Press any key to continue...\n")
+
+def play_pick_n():
+    userNums = get_user_nums()
+    winningNums = get_winning_nums() 
+    checker(userNums, winningNums)
+
+def get_user_nums():
+    userNums = []
+    while len(userNums) < NUMBER_OF_PICKS:
+        nums = input("Pick a number {} through {}: ".format(MIN_PICK, MAX_PICK))
+        try:
+            nums = int(nums)
+        except:
+            print("Sorry your input must be an integer!")
+            continue
+        if MIN_PICK <= nums <= MAX_PICK:
+            if nums not in userNums:
+                userNums.append(nums)
+            else:
+                print("Error! You have already picked this number")
+        else:
+            print("Error! Your number was not in range")
+
+    return sorted(userNums)
+
+def get_winning_nums():
+    return sorted(random.sample(range(MIN_PICK, MAX_PICK), NUMBER_OF_PICKS)) 
+
+def checker(userNums, winningNums):
+    if userNums == winningNums:
+        print ("\nCongratulations! You Win ₱{}!".format(WINNINGS),
+               "\nYour numbers: ", userNums,
+               "\nThe winning lottery numbers were: ", winningNums, "\n")
+    else:
+
+        print ("\nSorry, you lose...",
+               "\nYour numbers: ", userNums,
+               "\nThe winning lottery numbers were: ", winningNums, "\n")
 
 
 def main():
@@ -51,5 +112,7 @@ def main():
     _try()
     title()
     lottery_menu()
+    separator()
+    play()
 
 main()
