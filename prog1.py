@@ -16,11 +16,11 @@ MAX_PICK = 9
 WINNINGS = 1,000,000
 
 def intro():
-    print("\n\t       Welcome to Tine's Lottery")
+    print("\n\t\33[1m       Welcome to Tine's Lottery\33[0m")
     separator()
     name = input("\n\t        Kindly, enter your name: \n\t    >> ")
-    print(f"\n\t              Hello {name.title()}! ") 
-    print("\t        Are you ready to play?")
+    print(f"\n\t\33[33m              Hello \33[1m{name.title()}\33[0m\33[33m!\33[0m ") 
+    print("\t\33[3m        Are you ready to play?\33[0m")
 
 
 def _try():
@@ -31,18 +31,18 @@ def _try():
         return answer
     elif answer.lower() == "n":
         separator()
-        print("\t    Ok come back when you're ready! ")
-        print("\t           You can now exit.")
+        print("\t\33[1m    Ok come back when you're ready! \33[0m")
+        print("\t\33[1m\33[93m\33[3m           You can now exit.\33[0m")
         separator()
         sys.exit("\n")
     else: 
-        print("\t  Sorry your input must be a y/n!")
+        print("\t\33[31m\33[1m    Sorry your input must be a y/n!\33[0m")
         return _try()
 
 
 def quotes():
     from time import sleep
-    string = ("\n\tCourage is the discovery that you may not win, \n\t    and trying when you know you can lose.\n\t                                   — Tom Krause\n")
+    string = ("\n\t\33[3mCourage is the discovery that you may not win, \n\t    and trying when you know you can lose.\33[0m\n\t\33[1m                                   — Tom Krause\n\33[0m")
     for letter in string:
         sleep(0.15)
         sys.stdout.write(letter)
@@ -68,10 +68,10 @@ def separator():
 
 def play():
     while True:
-        choice = input("\n\t        Enter your choice[1-2] \n\t    >> ")
+        choice = input("\n\t\33[92m        Enter your choice[1-2]\33[0m \n\t    >> ")
         if choice == '1':
-            string = "\n\t        [Play Pick {}]".format(NUMBER_OF_PICKS) + "selected!"
-            dotted = "\n\t     ----------------------------"
+            string = "\n\t\33[1m\33[33m        [\33[0m\33[33mPlay Pick {}\33[1m]\33[0m".format(NUMBER_OF_PICKS) + "\33[1m\33[33m selected!\33[0m"
+            dotted = "\n\t\33[1m     ----------------------------\33[0m"
             
             print(dotted,
                   string,
@@ -88,11 +88,11 @@ def play():
         elif choice == '2':
             print("\n")
             separator()
-            print ("\t           You can now exit.")
+            print ("\t\33[1m\33[93m\33[3m           You can now exit.\33[0m")
             separator()
             sys.exit("\n")
                          
-        print("       Error! Invalid input. Press any key to continue...\n")
+        print("\33[31m\33[1m       Error! Invalid input. Press any key to continue...\33[0m\n")
 
 def get_user_nums():
     userNums = []
@@ -101,15 +101,15 @@ def get_user_nums():
         try:
             nums = int(nums)
         except:
-            print("\t   Sorry your input must be an integer!")
+            print("\t\33[31m\33[1m   Sorry your input must be an integer!\33[0m")
             continue
         if MIN_PICK <= nums <= MAX_PICK:
             if nums not in userNums:
                 userNums.append(nums)
             else:
-                print("\tError! You have already picked this number")
+                print("\t\33[31m\33[1mError! You have already picked this number\33[0m")
         else:
-            print("\t   Error! Your number was not in range")
+            print("\t\33[31m\33[1m   Error! Your number was not in range\33[0m")
 
     return sorted(userNums)
 
@@ -139,7 +139,7 @@ def try_again():
         separator()
         sys.exit("\n")
     else: 
-        print("\t        Sorry your input must be a y/n!")
+        print("\t\33[31m\33[1m        Sorry your input must be a y/n!\33[0m")
         return try_again()
 
 
