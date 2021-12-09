@@ -120,13 +120,13 @@ def get_winning_nums():
 
 def checker(userNums, winningNums):
     if userNums == winningNums:
-        print ("\n\t Congratulations! You Win ₱{}!".format(WINNINGS),
-               "\n\t           Your numbers: ", userNums,
-               "\n\tThe winning lottery numbers were: ", winningNums, "\n")
+        print ("\n\t\33[32m\33[1m   Congratulations! You Win ₱{}!\33[0m".format(WINNINGS),
+                "\n\t           Your numbers: ", userNums,
+                "\n\tThe winning lottery numbers were: ", winningNums, "\n")
     else:
-        print ("\n\t              Sorry, you lose...",
-               "\n\t           Your numbers: ", userNums,
-               "\n\tThe winning lottery numbers were: ", winningNums, "\n")
+        print ("\n\t\33[31m\33[1m              Sorry, you lose...\33[0m",
+                "\n\t           Your numbers: ", userNums,
+                "\n\tThe winning lottery numbers were: ", winningNums, "\n")
 
 
 def try_again():
