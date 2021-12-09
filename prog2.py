@@ -6,6 +6,7 @@
 # Repeat asking the user until the random number has been guessed correctly.
 
 import sys
+import random
 
 def intro():
     print("\n\tWelcome to Tine's Guessing Number")
@@ -35,8 +36,27 @@ def ready():
         print(" Sorry your input must be a y/n!")
         return ready()
 
+def guess():
+    guessesTaken = 0
+    number = random.randrange(0, 99)
+    guess = int(input("Take a guess."))
+    guessesTaken += 1
+    
+    if guess < number:
+        print("greater than")
+
+    if guess > number:
+        print("less than")
+
+
+    if guess == number:
+        guessesTaken = str(guessesTaken)
+        print(f"Good Job! You guess the number in {guessesTaken} guesses!")
+
+
 def main():
     intro()
     ready()
+    guess()
 
 main()
