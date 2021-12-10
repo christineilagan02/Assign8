@@ -9,15 +9,22 @@ import sys
 import random
 
 def intro():
-    print("\n\tWelcome to Tine's Guessing Number")
-    name = input("\n\tHello! What is your name? \n\t>> ")
+    print("\n\t\33[1m                Welcome to\33[0m")
+    title()
+    name = input("\n\t        Hello! What is your name? \n\t      >> ")
     print(f"Well {name.title()} before we begin, let's learn how to play the game.")
     instruction()
     print("Are you ready to guess a number?")
 
+def title():
+    title = "\t      \33[33moOo\33[0m \33[1mTine's Guessing Number\33[0m \33[33moOo\33[0m"
+    print("\n\t\33[1m\33[33m oOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m")
+    print(title)
+    print("\t\33[1m\33[33m oOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m---+---+---+---\33[1m\33[33moOo\33[0m")
+
 def instruction():
     from time import sleep
-    string = ("\n\t\33[3mThe computer will ask you for a number,\nand you will have to guess what it will give you.\33[0m\n")
+    string = ("\n\t\33[3mThe computer will ask you for a number around 0 to 99,\nand you will have to guess what it will give you.\33[0m\n")
     for letter in string:
         sleep(0.15)
         sys.stdout.write(letter)
@@ -36,18 +43,31 @@ def ready():
         print(" Sorry your input must be a y/n!")
         return ready()
 
-def guess():
+def _guess():
     guessesTaken = 0
     number = random.randrange(0, 99)
-    guess = int(input("Take a guess."))
-    guessesTaken += 1
-    
-    if guess < number:
-        print("greater than")
 
-    if guess > number:
-        print("less than")
 
+    while guessesTaken < 99:
+        guess = int(input("Take a guess."))
+
+        guessesTaken += 1
+
+        if guess >= 0 and guess <=99:
+            if guess < number:
+                print("greater than")
+                continue
+                
+            if guess > number:
+                print("less than")
+                continue
+                
+            if guess == number:
+                break
+
+        else:
+            print("The number you entered is not included in the predicted number. Just select from 0 to 99.")
+            continue
 
     if guess == number:
         guessesTaken = str(guessesTaken)
@@ -57,6 +77,6 @@ def guess():
 def main():
     intro()
     ready()
-    guess()
+    _guess()
 
 main()
