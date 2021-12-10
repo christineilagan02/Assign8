@@ -12,9 +12,12 @@ def intro():
     welcome()
     title()
     name = input("\n\t        Hello! What is your name? \n\t      >> ")
-    print(f"\n\t        Well {name.title()} before we begin, \n\t    let's learn how to play the game.\n")
+    separator()
+    print(f"\n\t        Well \33[1m{name.title()}\33[0m before we begin, \n\t    let's learn how to play the game.\n")
+    separator()
     instruction()
-    print("Are you ready to guess a number?")
+    print("\n\t         Are you ready to guess a number?")
+    
 
 def welcome():
     from time import sleep
@@ -32,24 +35,28 @@ def title():
 
 def instruction():
     from time import sleep
-    string = ("\n\t\33[3mThe computer will ask you for a number around 0 to 99,\nand you will have to guess what it will give you.\33[0m\n")
+    string = ("\n\t\33[3mThe computer will ask you for a number around 0 to 99,\n\t  and you will have to guess what it will give you.\33[0m\n")
     for letter in string:
         sleep(0.15)
         sys.stdout.write(letter)
         sys.stdout.flush()
 
 def ready():
-    answer = input("\t\nKindly, type y for yes and n for no. \n\t    >> ")
-    print("\n")
+    answer = input("\n\t       Kindly, type y for yes and n for no. \n\t         >> ")
     if answer.lower() == "y":
         return answer
     elif answer.lower() == "n":
-        print("\t Ok come back when you're ready! ")
-        print("\t You can now exit.")
+        separator()
+        print("\t\33[1m    Ok come back when you're ready! \33[0m")
+        print("\t\33[1m\33[93m\33[3m           You can now exit.\33[0m")
+        separator()
         sys.exit("\n")
     else: 
-        print(" Sorry your input must be a y/n!")
+        print("\t\33[31m\33[1m         Sorry your input must be a y/n!\33[0m")
         return ready()
+
+def separator():
+    print("\t   \33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m---+---+---+---\33[1m\33[33m*\33[0m")
 
 def _guess():
     guessesTaken = 0
@@ -57,29 +64,37 @@ def _guess():
 
 
     while guessesTaken < 99:
-        guess = int(input("Take a guess."))
+        separator()
+        guess = int(input("\t             Take a guess. \n\t           >> "))
 
         guessesTaken += 1
 
         if guess >= 0 and guess <=99:
             if guess < number:
-                print("greater than")
+                print("\t\33[1m\33[33m        Your guess is less than ")
+                print("\t         the computer's number.\33[0m")
                 continue
                 
             if guess > number:
-                print("less than")
+                print("\t\33[1m\33[34m      Your guess is greater than ")
+                print("\t        the computer's number.\33[0m")
                 continue
                 
             if guess == number:
                 break
 
         else:
-            print("The number you entered is not included in the predicted number. Just select from 0 to 99.")
+            print("\t\33[1m\33[31mThe number you entered is not included ")
+            print("\t        in the predicted number.")
+            print("\t       Just select from 0 to 99.\33[0m")
             continue
 
     if guess == number:
         guessesTaken = str(guessesTaken)
-        print(f"Good Job! You guess the number in {guessesTaken} guesses!")
+        print("\t\33[1m\33[32m               Good Job!")
+        print(f"\t   You guess the number in {guessesTaken} guesses!\33[0m")
+        separator()
+        print("\n")
 
 
 def main():
