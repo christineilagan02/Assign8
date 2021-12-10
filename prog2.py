@@ -9,12 +9,20 @@ import sys
 import random
 
 def intro():
-    print("\n\t\33[1m                Welcome to\33[0m")
+    welcome()
     title()
     name = input("\n\t        Hello! What is your name? \n\t      >> ")
-    print(f"Well {name.title()} before we begin, let's learn how to play the game.")
+    print(f"\n\t        Well {name.title()} before we begin, \n\t    let's learn how to play the game.\n")
     instruction()
     print("Are you ready to guess a number?")
+
+def welcome():
+    from time import sleep
+    string = ("\n\t\33[1m                Welcome to\33[0m")
+    for letter in string:
+        sleep(0.15)
+        sys.stdout.write(letter)
+        sys.stdout.flush()
 
 def title():
     title = "\t      \33[33moOo\33[0m \33[1mTine's Guessing Number\33[0m \33[33moOo\33[0m"

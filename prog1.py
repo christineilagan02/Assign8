@@ -13,7 +13,7 @@ import sys
 NUMBER_OF_PICKS = 3
 MIN_PICK = 0
 MAX_PICK = 9
-WINNINGS = 1,000,000
+WINNINGS = "1,000,000"
 
 def intro():
     print("\n\t\33[1m       Welcome to Tine's Lottery\33[0m")
@@ -27,7 +27,7 @@ def _try():
     answer = input("\t\n          Kindly, type y for yes and n for no. \n\t    >> ")
     print("\n")
     if answer.lower() == "y":
-        quotes()
+        
         return answer
     elif answer.lower() == "n":
         separator()
@@ -78,8 +78,8 @@ def play():
                   dotted)
 
 
+            winningNums = get_winning_nums()  
             userNums = get_user_nums()
-            winningNums = get_winning_nums() 
             checker(userNums, winningNums)
             
             try_again()
@@ -110,7 +110,7 @@ def get_user_nums():
                 print("\t\33[31m\33[1mError! You have already picked this number\33[0m")
         else:
             print("\t\33[31m\33[1m   Error! Your number was not in range\33[0m")
-
+    
     return sorted(userNums)
 
 
@@ -120,13 +120,13 @@ def get_winning_nums():
 
 def checker(userNums, winningNums):
     if userNums == winningNums:
-        print ("\n\t\33[32m\33[1m   Congratulations! You Win ₱{}!\33[0m".format(WINNINGS),
-                "\n\t           Your numbers: ", userNums,
-                "\n\tThe winning lottery numbers were: ", winningNums, "\n")
+        print ("\n\t\33[32m\33[1m   Congratulations! You Win\33[0m \33[33m₱{}\33[0m\33[32m\33[1m!\33[0m".format(WINNINGS),
+                f"\n\t           Your numbers: \33[1m\33[36m{userNums}\33[0m",
+                f"\n\tThe winning lottery numbers were: \33[1m\33[34m{winningNums}\33[0m \n")
     else:
         print ("\n\t\33[31m\33[1m              Sorry, you lose...\33[0m",
-                "\n\t           Your numbers: ", userNums,
-                "\n\tThe winning lottery numbers were: ", winningNums, "\n")
+                f"\n\t           Your numbers: \33[1m\33[36m{userNums}\33[0m",
+                f"\n\tThe winning lottery numbers were: \33[1m\33[33m{winningNums}\33[0m\n")
 
 
 def try_again():
